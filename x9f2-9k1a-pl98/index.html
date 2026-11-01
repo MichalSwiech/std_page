@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save the Date - Weronika & Michał</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="card-container">
+
+    <!-- NAGŁÓWEK -->
+    <div class="header-group">
+      <div class="title-save">SAVE</div>
+      <div class="title-the">the</div>
+      <div class="title-date">DATE</div>
+    </div>
+
+    <!-- DATA I IMIONA -->
+    <div class="date-display">27.08.2027</div>
+    <div class="names-display">WERONIKA & MICHAŁ</div>
+
+    <!-- ILUSTRACJA PAŁACU I WIANEK SVG -->
+    <div class="illustration-wrapper">
+        <img class="palace-svg" src="img/palac.png" alt="Ilustracja">
+    </div>
+
+    <!-- LOKALIZACJA -->
+    <div class="location-title">Pałac Zdrojowy Krzeszowice</div>
+
+    <div class="subtitle-note">Oficjalne zaproszenie wkrótce</div>
+
+    <!-- MONOGRAM -->
+    <div class="monogram-wrapper">
+      <svg class="monogram-svg" viewBox="0 0 100 60">
+        <path d="M 20 15 C 20 45, 35 50, 45 20 C 47 15, 53 15, 55 20 C 65 50, 80 45, 80 15" />
+        <path d="M 35 10 L 50 48 L 65 10" stroke-width="0.8" />
+      </svg>
+    </div>
+
+    <!-- ODLICZANIE CZASU I AKCJE -->
+    <div class="countdown-section">
+      <div class="countdown-grid">
+        <div class="countdown-item">
+          <span class="countdown-num" id="days">---</span>
+          <span class="countdown-label">Dni</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="hours">--</span>
+          <span class="countdown-label">Godzin</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="minutes">--</span>
+          <span class="countdown-label">Minut</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="seconds">--</span>
+          <span class="countdown-label">Sekund</span>
+        </div>
+      </div>
+      <!-- LINK DO MAPY -->
+      <a href="https://maps.google.com/?q=Palac+Zdrojowy+Krzeszowice" target="_blank" class="map-link">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        Zobacz mapę dojazdu
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Odliczanie do 27.08.2027
+    const targetDate = new Date('2027-08-27T16:00:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = days;
+        document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+      } else {
+        document.getElementById('days').innerText = '0';
+        document.getElementById('hours').innerText = '00';
+        document.getElementById('minutes').innerText = '00';
+        document.getElementById('seconds').innerText = '00';
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
